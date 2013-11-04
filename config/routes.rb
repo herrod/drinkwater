@@ -1,4 +1,6 @@
 Drinkwater::Application.routes.draw do
+  resources :drinks
+
   devise_for :users
   root "pages#home"
 
