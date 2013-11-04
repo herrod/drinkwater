@@ -1,4 +1,16 @@
-<h1>Track your water consumption!</h1>
-<p>Sign up <%= link_to "here", "#" %>.</p>
+<div class="jumbotron center">
+    <h1>Track Your Hydration!</h1>
+	<p><%= image_tag(image_path('blue-water-glass.jpg'), size: "250x350") %></p>
+    <% if user_signed_in? %>
+          # do something
+    <% else %>
+       <p>
+         <%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
+         <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+       </p>
+  <% end %>  
+</div>
 
-<%= image_tag(image_path('water-glass.jpg'), size: "250x350") %>
+
+
+
