@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104143344) do
+ActiveRecord::Schema.define(version: 20131106052134) do
 
   create_table "drinks", force: true do |t|
     t.string   "brand"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20131104143344) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.datetime "time_of_first_sip"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "drinks", ["user_id"], name: "index_drinks_on_user_id"

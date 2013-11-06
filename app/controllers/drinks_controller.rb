@@ -1,5 +1,6 @@
 class DrinksController < ApplicationController
   before_action :set_drink, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @drinks = Drink.all
@@ -9,14 +10,14 @@ class DrinksController < ApplicationController
   end
 
   def new
-    @drink = Drink.new
+    @drink = current_user.drinks.new
   end
 
   def edit
   end
 
   def create
-    @drink = Drink.new(drink_params)
+    @drink = current_user.drinks.new(drink_params)
 
     respond_to do |format|
       if @drink.save
@@ -55,8 +56,13 @@ class DrinksController < ApplicationController
       @drink = Drink.find(params[:id])
     end
 
+    def correct_user
+      @drink = current_user.drinks.find_by(id: params[:id])
+      redirect_to drinks_path, notice: "Not authorized to edit this drink" if @drink.nil?
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def drink_params
-      params.require(:drink).permit(:brand, :num_ounces)
+      params.require(:drink).permit(:brand, :num_ounces, :image)
     end
 end
