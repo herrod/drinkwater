@@ -1,40 +1,16 @@
-<h1>My drinks</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Brand</th>
-      <th>Ounces</th>
-      <th>First Sip</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @drinks.each do |drink| %>
-      <tr>
-        <td><%= image_tag drink.image.url(:thumb) %></td>
-        <td><%= drink.brand %></td>
-        <td><%= drink.num_ounces %></td>
-        <td><%= drink.created_at.strftime("%m-%d, %H-%M") %></td>
-        <td><%= drink.user.email if drink.user %></td>
-
-        <td><%= link_to 'Show', drink %></td>
-        <% if drink.user == current_user %>
-            <td><%= link_to 'Edit', edit_drink_path(drink) %></td>
-            <td><%= link_to 'Destroy', drink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<% if user_signed_in? %>
-  <%= link_to 'New Drink', new_drink_path %>
-<% end %>
+<div id="drinks">
+  <% @drinks.each do |drink| %>
+    <%= image_tag drink.image.url(:thumb) %>
+    <div class="box">
+      <%= drink.brand %>
+      <%= drink.num_ounces %>
+      <%= drink.created_at.strftime("%m-%d, %H-%M") %>
+      <%= drink.user.email if drink.user %>
+      <%= link_to 'Show', drink %>
+      <% if drink.user == current_user %>
+        <%= link_to 'Edit', edit_drink_path(drink) %>
+        <%= link_to 'Destroy', drink, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
