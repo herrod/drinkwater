@@ -1,22 +1,25 @@
-<p id="notice"><%= notice %></p>
-
-<%= image_tag @drink.image.url(:medium) %>
-
-<p>
-  <strong>Brand:</strong>
-  <%= @drink.brand %>
-</p>
-
-<p>
-  <strong>Num ounces:</strong>
-  <%= @drink.num_ounces %>
-</p>
-
-<p>
-  <strong>Time of First Sip:</strong>
-  <%= @drink.created_at.strftime("%m-%d, %H-%M") %>
-</p>
-
-
-<%= link_to 'Edit', edit_drink_path(@drink) %> |
 <%= link_to 'Back', drinks_path %>
+
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading center">
+        <%= image_tag @drink.image.url(:medium) %>
+      </div>
+      <div class="panel-body">
+        <p><%= @drink.brand %></p>
+        <p><%= @drink.created_at.strftime("%m-%d, %H-%M") %></p>
+        <p><strong><%= @drink.user.email if @drink.user %></strong></p>
+
+        <% if @drink.user == current_user %>
+	      <%= link_to edit_drink_path(@drink) do %>
+	        <span class="glyphicon glyphicon-edit"></span>
+	        Edit
+	      <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -4,5 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
- 	has_many :drinks
+	has_many :drinks
+
+	validates :name, presence: true
+
 end
