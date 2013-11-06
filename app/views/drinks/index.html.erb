@@ -1,25 +1,28 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
-<div id="drinks" class="transitions-enabled">
-  <% @drinks.each do |drink| %>
-    <div class="box panel panel-default">
-      <%= link_to image_tag(drink.image.url(:thumb)), drink %>
-      <div class="panel-body">
-        <%= drink.brand %><br>
-        <%= drink.num_ounces %> oz.<br>
-        <%= drink.created_at.strftime("%m-%d, %H-%M") %><br>
-        <%= drink.user.email if drink.user %><br>
-        <% if drink.user == current_user %>
-          <%= link_to edit_drink_path(drink) do %>
-              <span class="glyphicon glyphicon-edit"></span>
-              Edit
+<% if user_signed_in? %>
+
+  <div id="drinks" class="transitions-enabled">
+    <% @drinks.each do |drink| %>
+      <div class="box panel panel-default">
+        <%= link_to image_tag(drink.image.url(:thumb)), drink %>
+        <div class="panel-body">
+          <%= drink.brand %><br>
+          <%= drink.num_ounces %> oz.<br>
+          <%= drink.created_at.strftime("%m-%d, %H-%M") %><br>
+          <%= drink.user.email if drink.user %><br>
+          <% if drink.user == current_user %>
+            <%= link_to edit_drink_path(drink) do %>
+                <span class="glyphicon glyphicon-edit"></span> Edit
             <% end %>
-          <%= link_to drink, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <span class="glyphicon glyphicon-trash"></span>
-              Delete
+            <%= link_to drink, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash"></span> Delete
             <% end %>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+  
+<% end %>
+

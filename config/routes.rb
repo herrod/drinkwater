@@ -2,6 +2,7 @@ Drinkwater::Application.routes.draw do
   resources :drinks
 
   devise_for :users
+  
   root "drinks#index"
 
   get "about" => "pages#about"
