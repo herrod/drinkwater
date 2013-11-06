@@ -16,5 +16,8 @@
 //= require turbolinks
 //= require masonry/jquery.masonry
 //= require jquery.turbolinks
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/modules/exporting
 //= require_tree .
 

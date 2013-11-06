@@ -1,6 +1,7 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
-<% if user_signed_in? %>
+<% if user_signed_in? %>  
+
 
   <div id="drinks" class="transitions-enabled">
     <% @drinks.each do |drink| %>
@@ -23,6 +24,6 @@
       </div>
     <% end %>
   </div>
-  
+
 <% end %>
 

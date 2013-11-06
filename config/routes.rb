@@ -1,12 +1,20 @@
 Drinkwater::Application.routes.draw do
   resources :drinks
-
   devise_for :users
-  
-  root "drinks#index"
 
+  resources :charts do 
+    collection do 
+      get 'basic_line'
+      get 'line_ajax'
+      get 'line_labels'
+    end
+  end
+
+#  root 'visitors#new'
+
+  root "drinks#index"
   get "about" => "pages#about"
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
