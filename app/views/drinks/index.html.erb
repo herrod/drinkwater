@@ -2,6 +2,11 @@
 
 <% if user_signed_in? %>  
 
+<%= link_to  basic_line_charts_path, remote: true do -%>
+ See Chart
+<%- end -%>
+
+<div id="basic_line"></div>
 
   <div id="drinks" class="transitions-enabled">
     <% @drinks.each do |drink| %>
